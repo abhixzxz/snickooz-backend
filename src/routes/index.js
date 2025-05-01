@@ -1,9 +1,13 @@
 import express from 'express';
+import userRoutes from './user.routes.js';
+
 const router = express.Router();
 
-// Routes will be defined here
+
 router.get('/', (req, res) => {
-  res.json({ message: 'API is running' });
+  res.json({ message: 'API is running => SUCCESSFULLY..!!' });
 });
+
+router.use('/users', userRoutes);
 
 export default router;
