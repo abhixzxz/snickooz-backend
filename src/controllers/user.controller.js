@@ -271,3 +271,31 @@ export const getUserById = async (req, res) => {
     });
   }
 };
+
+export const getRandomUsers = async (req, res) => {
+  try {
+    const randomUsers = await User.aggregate([
+      { $match: { _id: { $ne: req.user._id } } },
+      { $sample: { size: 4 } }
+    ]);
+
+    const users = randomUsers.map(user => {
+      const userObj = user;
+      delete userObj.password;
+      delete userObj.refreshToken;
+      return userObj;
+    });
+
+    res.json({
+      status: 'success',
+      data: {
+        users
+      }
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      message: error.message
+    });
+  }
+};

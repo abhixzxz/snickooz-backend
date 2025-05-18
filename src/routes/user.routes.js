@@ -6,7 +6,8 @@ import {
   updateProfile,
   updatePassword,
   updateStatus,
-  getUserById
+  getUserById,
+  getRandomUsers
 } from '../controllers/user.controller.js';
 import { verifyToken, optionalAuth } from '../middleware/auth.middleware.js';
 
@@ -26,5 +27,8 @@ router.patch('/password', updatePassword);
 router.patch('/status', updateStatus);
 
 router.get('/users/:id', optionalAuth, getUserById);
+
+// Get random users
+router.get('/random', verifyToken, getRandomUsers);
 
 export default router;
