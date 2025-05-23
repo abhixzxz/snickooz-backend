@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import 'dotenv/config';
+import './models/index.js';
 import routes from './routes/index.js';
 
 import { connectDB } from './config/database.js';
